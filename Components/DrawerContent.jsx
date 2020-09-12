@@ -48,7 +48,7 @@ export default function DrawerContent({ navigation }) {
             marginVertical: 20,
           }}
         ></View>
-        <Text style={{ fontWeight: "bold" }}>{Auth.currentUser.email}</Text>
+        <Text style={{ fontWeight: "bold" }}>{Auth.currentUser.displayName}</Text>
         <View
           style={{
             justifyContent: "space-around",

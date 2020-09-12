@@ -4,34 +4,38 @@ import { View, Text, Button, StatusBar, StyleSheet } from "react-native";
 import { CurrentUserContext } from "../Contexts/CurrentUserContext";
 import { Auth } from "../Services/Firebase";
 import { Entypo } from "@expo/vector-icons";
-import HomeTopTab from "../Navigators/HomeTopTab";
 
-export default function HomeScreen({ navigation }) {
+export default function SaveScreen({ navigation }) {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   return (
-    console.log(navigation),
-    <View style={{ flex: 1, justifyContent: "space-around" }}>
+    <View
+      style={{
+        flex: 1,
+        width: "90%",
+        alignSelf: "flex-end",
+        borderTopLeftRadius: 50,
+        elevation: 5,
+        padding: 30,
+      }}
+    >
       <View
         style={{
-          marginVertical: StatusBar.currentHeight + 20,
-          marginHorizontal: 20,
+          flexDirection: "row",
+          width: "90%",
+          justifyContent: "space-around",
         }}
       >
-        <Entypo
-          name="menu"
-          size={40}
-          color="#FD3A33"
-          onPress={() => navigation.openDrawer()}
-        />
+        <Text style={Styles.filterText}>All Food</Text>
+        <Text style={Styles.filterText}>Veg</Text>
+        <Text style={Styles.filterText}>Non Veg</Text>
       </View>
-      <HomeTopTab></HomeTopTab>
     </View>
   );
 }
 
 const Styles = StyleSheet.create({
-  filterText:{
+  filterText: {
     fontSize: 22,
-    color: '#4F3836'
-  }
-})
+    color: "#4F3836",
+  },
+});
