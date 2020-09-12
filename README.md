@@ -1,5 +1,5 @@
 <p align="center">
-  <span style="font-size:40px"><b>Leftoverz</b></span>
+  <h2><b>Leftoverz</b></h2>
   <br>
   #bonhacketit #mlhseason2021
   <hr>
