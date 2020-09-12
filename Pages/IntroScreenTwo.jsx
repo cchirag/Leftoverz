@@ -108,7 +108,7 @@ export default function IntroScreenTwo({ navigation }) {
               elevation: 10,
             }}
           >
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress = {() => navigation.navigate("Sign In")}>
               <MaterialIcons name="navigate-next" size={40} color="#FD3A33" />
             </TouchableWithoutFeedback>
           </View>
