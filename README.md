@@ -1,10 +1,11 @@
 <p align="center">
-  <b>Leftoverz</b>
+  <span style="font-size:30px"><b>Leftoverz</b></span>
   <br>
   #bonhacketit #mlhseason2021
   <hr>
   <br>
-  An App for needy people across a city to get leftover food from hotels or other persons along with a feature to connect with other similar people.
+  <span style="font-size:15px">An App for needy people across a city to get leftover food from hotels or other persons along with a feature to connect with other similar people.</span>
+  
 </p>
 <div>
 <p align="center">
