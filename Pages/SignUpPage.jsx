@@ -25,13 +25,29 @@ export default function SignUpPage({ navigation }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleSignUp = async() => {
+  const handleSignUp = async () => {
     if (password === confirmPassword) {
       await Auth.createUserWithEmailAndPassword(email, password)
-        .then(async (res) => await FireStore.collection("users").doc(res.user.uid).set({
-            "email": res.user.email,
-            "searchRadius": 1
-        }))
+        .then(async (res) => {
+          await res.user
+            .updateProfile({ displayName: email })
+            .then(async () => {
+              await FireStore.collection("users").doc(res.user.uid).set({
+                email: res.user.email,
+                displayName: res.user.displayName,
+                searchRadius: 1,
+                uid: res.user.uid,
+                foodSaved: 0,
+                foodShared: 0
+              });
+            });
+        })
+        .then(() => {
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          navigation.navigate("Sign In");
+        })
         .catch((err) => Alert.alert("Error", err.toString()))
         .then(() => setLoading(false));
     } else {
@@ -109,7 +125,7 @@ export default function SignUpPage({ navigation }) {
                 }}
               >
                 {loading === true ? (
-                  <ActivityIndicator color = 'white'></ActivityIndicator>
+                  <ActivityIndicator color="white"></ActivityIndicator>
                 ) : (
                   <Text
                     style={{

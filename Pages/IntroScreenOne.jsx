@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import IntroImage from "../assets/images/Asset-1.png";
 import { MaterialIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 export default function IntroScreenOne({ navigation }) {
   return (
