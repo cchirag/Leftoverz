@@ -17,8 +17,9 @@ import TopImage from "../assets/images/P.png";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Auth } from "../Services/Firebase";
+import { Auth, FireStore } from "../Services/Firebase";
 import { CurrentUserContext } from "../Contexts/CurrentUserContext";
+import * as Location from 'expo-location';
 
 export default function SignInPage({ navigation }) {
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
@@ -26,8 +27,17 @@ export default function SignInPage({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const handleSignIn = async () => {
-    await Auth.signInWithEmailAndPassword(email, password)
+    async function getLocation(){
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+      }
+    }
+    getLocation().then(async() => {
+      await Auth.signInWithEmailAndPassword(email, password)
       .then((res) => {
         setCurrentUser(res.user);
         setEmail("");
@@ -40,6 +50,8 @@ export default function SignInPage({ navigation }) {
       .finally(() => {
         setLoading(false);
       });
+    });
+    
   };
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#FD3A33" }}>
@@ -92,7 +104,7 @@ export default function SignInPage({ navigation }) {
                 setLoading(true);
               }}
               background={TouchableNativeFeedback.Ripple(rippleColor, true)}
-              disabled = {loading}
+              disabled={loading}
             >
               <View
                 style={{

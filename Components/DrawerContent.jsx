@@ -9,9 +9,18 @@ import { CurrentUserContext } from "../Contexts/CurrentUserContext";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
 export default function DrawerContent({ navigation }) {
+  const colors = [
+    "#00A4CCFF",
+    "#F95700FF",
+    "#101820FF",
+    "#FEE715FF",
+    "#00239CFF",
+    "#00239CFF",
+  ];
   const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
   const [foodShared, setFoodShared] = useState(0);
   const [foodSaved, setFoodSaved] = useState(0);
+  const [color, setColor] = useState(0);
 
   useEffect(() => {
     async function getData() {
@@ -20,6 +29,7 @@ export default function DrawerContent({ navigation }) {
         .onSnapshot((doc) => {
           setFoodShared(doc.data().foodShared);
           setFoodSaved(doc.data().foodSaved);
+          setColor(doc.data().color)
         });
     }
     getData();
@@ -44,7 +54,7 @@ export default function DrawerContent({ navigation }) {
             height: 100,
             width: 100,
             borderRadius: 50,
-            backgroundColor: "black",
+            backgroundColor: colors[color],
             marginVertical: 20,
           }}
         ></View>

@@ -4,6 +4,7 @@ import * as Font from "expo-font";
 import IntroStack from "./Navigators/IntroStack";
 import { NavigationContainer } from "@react-navigation/native";
 import { CurrentUserProvider } from "./Contexts/CurrentUserContext";
+import * as Location from "expo-location";
 
 export default function App() {
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function App() {
       });
     };
     loadFont();
-  },[]);
+  }, []);
 
   return (
     <NavigationContainer>

@@ -38,7 +38,8 @@ export default function SignUpPage({ navigation }) {
                 searchRadius: 1,
                 uid: res.user.uid,
                 foodSaved: 0,
-                foodShared: 0
+                foodShared: 0,
+                color: 0
               });
             });
         })
